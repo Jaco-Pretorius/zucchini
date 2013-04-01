@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Zucchini::Report do
-  let (:device) { { :name => "iPad 2", :screen => "ipad_ios5", :udid => "rspec012345" } }
+  let (:device) { Zucchini::Device.new("iPad 2","ipad_ios5","rspec012345") }
   let (:feature) do
     fake_screenshots = (1..7).to_a.map do |num|
       screenshot = Zucchini::Screenshot.new("#{num}.screen_#{num}.png", device)

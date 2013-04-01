@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
-    <title>Test Results: <%= @device[:name] %>, <%= @time %></title>
+    <title>Test Results: <%= @device.name %>, <%= @time %></title>
 	<link rel="stylesheet" href="<%= @assets_path %>/css/zucchini.report.css" type="text/css" media="screen">
 	<script src="<%= @assets_path %>/js/jquery.js"></script>
 	<script src="<%= @assets_path %>/js/jquery.ui.core.js"></script>
@@ -11,7 +11,7 @@
 </head>
 <body class="<%= @ci %>">
 	<header>
-		<h1><%= @device[:name] %><span class="time"><%= @time %></span></h1>
+		<h1><%= @device.name %><span class="time"><%= @time %></span></h1>
 	</header>
 	
 	<% @features.each_with_index do |f, i| %>

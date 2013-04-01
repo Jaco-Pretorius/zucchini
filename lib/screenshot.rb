@@ -22,8 +22,8 @@ class Zucchini::Screenshot
       file_base_path = File.dirname(@file_path)
 
       @masks_paths = {
-        :global   => "#{file_base_path}/../../../support/masks/#{@device[:screen]}.png",
-        :specific => "#{file_base_path}/../../masks/#{@device[:screen]}/#{@file_name}"
+        :global   => "#{file_base_path}/../../../support/masks/#{@device.screen}.png",
+        :specific => "#{file_base_path}/../../masks/#{@device.screen}/#{@file_name}"
       }
 
       masked_path   = "#{file_base_path}/../Masked/actual/#{@file_name}"
@@ -66,7 +66,7 @@ class Zucchini::Screenshot
       @diff = (out == "0\n") ? [:passed, nil] : [:failed, out]
       @diff = [:pending, @diff[1]] if @pending
     else
-      @diff = [:failed, "no reference or pending screenshot for #{@device[:screen]}\n"]
+      @diff = [:failed, "no reference or pending screenshot for #{@device.screen}\n"]
     end
   end
 
@@ -81,7 +81,7 @@ class Zucchini::Screenshot
   def mask_reference
     file_base_path = File.dirname(@file_path)
     %W(reference pending).each do |reference_type|
-      reference_file_path = "#{file_base_path}/../../#{reference_type}/#{@device[:screen]}/#{@file_name}"
+      reference_file_path = "#{file_base_path}/../../#{reference_type}/#{@device.screen}/#{@file_name}"
       output_path         = "#{file_base_path}/../Masked/#{reference_type}/#{@file_name}"
 
       if File.exists?(reference_file_path)

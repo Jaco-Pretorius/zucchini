@@ -21,8 +21,11 @@ describe Zucchini::Config do
     before(:all) { Zucchini::Config.base_path = "spec/sample_setup" }
 
     context "device present in config.yml" do
-      it "should return the device hash" do
-        Zucchini::Config.device("My iDevice").should eq({:name =>"My iDevice", :udid =>"lolffb28d74a6fraj2156090784avasc50725dd0", :screen =>"ipad_ios5"})
+      it "should return the device" do
+        device = Zucchini::Config.device("My iDevice")
+        device.name.should == 'My iDevice'
+        device.udid.should == 'lolffb28d74a6fraj2156090784avasc50725dd0'
+        device.screen.should == 'ipad_ios5'
       end
     end
    
@@ -34,7 +37,10 @@ describe Zucchini::Config do
 
     context "default device" do
       it "should use default device if device name argument is nil" do
-        Zucchini::Config.device(nil).should eq({:name =>"Default Device", :screen =>"low_ios5", :udid => nil})
+        default_device = Zucchini::Config.device(nil)
+        default_device.name.should == "Default Device"
+        default_device.screen.should == "low_ios5"
+        default_device.udid.should be_nil
       end
 
       it "should raise error if no default device provided" do

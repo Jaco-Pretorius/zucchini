@@ -10,6 +10,7 @@ require 'lib/detector'
 require 'lib/runner'
 require 'lib/generator'
 require 'lib/approver'
+require 'lib/device'
 
 RSpec.configure do |config|
   config.color_enabled = true

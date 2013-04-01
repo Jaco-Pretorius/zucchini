@@ -7,7 +7,7 @@ def md5(blob)
 end
 
 describe Zucchini::Screenshot do
-  let (:device)        { { :name => "iPhone 4S", :screen => "retina_ios5", :udid => "rspec987654" } }
+  let (:device)        { Zucchini::Device.new("iPhone 4S","rspec987654","retina_ios5") }
   let (:base_path)     { "spec/sample_setup/feature_one" }
   let (:original_path) { "#{base_path}/run_data/Run\ 1/06_sign\ up_spinner.png" }
   
@@ -56,7 +56,7 @@ describe Zucchini::Screenshot do
     context "images are different" do
       it "should have a failed indicator in the diff" do
         screenshot.stub!(:mask_reference)
-        screenshot.test_path = "#{base_path}/reference/#{device[:screen]}/06_sign\ up_spinner_error.png"
+        screenshot.test_path = "#{base_path}/reference/#{device.screen}/06_sign\ up_spinner_error.png"
         screenshot.compare
         screenshot.diff.should eq [:failed, "3017\n"]
       end
@@ -68,7 +68,7 @@ describe Zucchini::Screenshot do
       screenshot.mask_reference
       
       File.exists?(screenshot.test_path).should be_true
-      md5(File.read(screenshot.test_path)).should_not be_equal md5(File.read("#{base_path}/reference/#{device[:screen]}/06_sign\ up_spinner.png"))
+      md5(File.read(screenshot.test_path)).should_not be_equal md5(File.read("#{base_path}/reference/#{device.screen}/06_sign\ up_spinner.png"))
     end
   end
 
