@@ -9,8 +9,7 @@ describe Zucchini::Report do
       screenshot
     end
 
-    feature = Zucchini::Feature.new("/my/sample/feature")
-    feature.device = device
+    feature = Zucchini::Feature.new("/my/sample/feature", device)
     feature.stub!(:screenshots).and_return(fake_screenshots)
     feature
   end

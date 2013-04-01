@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe Zucchini::Feature do
-  let(:path)    { './spec/sample_setup/feature_one' }
-  let(:feature) { Zucchini::Feature.new(path) }
+  let(:path) { './spec/sample_setup/feature_one' }
+  let(:device) { Zucchini::Device.new('My iDevice','2b6f0cc904d137be2e1730235f5664094b831186','retina_ios5') }
+  let(:feature) { Zucchini::Feature.new(path, device) }
   
   after(:all) { FileUtils.rm_rf Dir.glob("#{path}/run_data/feature.*") }
   
@@ -41,7 +42,6 @@ describe Zucchini::Feature do
     context "copies screenshots to reference directory" do
       before do
         feature.path = './spec/sample_setup/feature_three'
-        feature.device = Zucchini::Device.new('My iDevice','2b6f0cc904d137be2e1730235f5664094b831186','retina_ios5')
 
         # Copying some random image to run screenshots.
         @screenshot_path = "#{feature.path}/run_data/Run\ 1/screenshot.png"

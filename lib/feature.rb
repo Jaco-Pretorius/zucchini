@@ -1,17 +1,20 @@
 class Zucchini::Feature
   attr_accessor :path
-  attr_accessor :device
+  attr_reader :device
   attr_accessor :template
   attr_accessor :stats
   
   attr_reader :succeeded
   attr_reader :name   
   
-  def initialize(path)
+  def initialize(path, device)
     @path      = path
-    @device    = nil
+    @device    = device
     @succeeded = false
-    @name      = File.basename(path)
+  end
+
+  def name
+    File.basename(@path)
   end
   
   def run_data_path

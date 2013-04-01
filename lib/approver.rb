@@ -6,7 +6,6 @@ class Zucchini::Approver < Zucchini::Detector
   def run_command
     reference_type = pending? ? "pending" : "reference"
     features.each do |f|
-      f.device = @device
       f.approve reference_type
     end
     features.inject(true){ |result, feature| result &= feature.succeeded }

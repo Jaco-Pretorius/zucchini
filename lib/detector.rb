@@ -22,17 +22,19 @@ class Zucchini::Detector < Clamp::Command
     @features ||= detect_features(@path)
   end
 
+  private
+
   def detect_features(path)
     features = []
     if File.exists?("#{path}/feature.zucchini")
-      features << Zucchini::Feature.new(path)
+      features << Zucchini::Feature.new(path, @device)
     else
       raise detection_error(path) if Dir["#{path}/*"].empty?
 
       Dir.glob("#{path}/*").each do |dir|
           unless dir.match /support/
           if File.exists?("#{dir}/feature.zucchini")
-            features << Zucchini::Feature.new(dir)
+            features << Zucchini::Feature.new(dir, @device)
           else
             raise detection_error(dir)
           end

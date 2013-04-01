@@ -23,7 +23,10 @@ describe Zucchini::Detector do
   end
 
   describe "detect features" do
-    subject { lambda { detector.detect_features(@path) } }
+    subject do 
+      detector.path = @path
+      lambda { detector.features } 
+    end
     
     context "path to a single feature" do
       before { @path = "spec/sample_setup/feature_one" }
