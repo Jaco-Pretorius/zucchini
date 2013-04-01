@@ -7,5 +7,9 @@ module Zucchini
       @udid = udid
       @screen = screen
     end
+
+    def is_simulator?
+      @name == 'iOS Simulator'
+    end
   end
 end

@@ -67,7 +67,7 @@ class Zucchini::Feature
       `rm -rf #{run_data_path}/*`
       compile_js
     
-      device_params = (@device.name == "iOS Simulator") ? "" : "-w #{@device.udid}"
+      device_params = @device.is_simulator? ? "" : "-w #{@device.udid}"
       
       begin
         out = `instruments #{device_params} -t "#{@template}" "#{Zucchini::Config.app}" -e UIASCRIPT "#{run_data_path}/feature.js" -e UIARESULTSPATH "#{run_data_path}" 2>&1`
