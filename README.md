@@ -35,7 +35,7 @@ zucchini generate --feature /path/to/my_project/features/my_feature
 
 Start hacking by modifying features/my_feature/feature.zucchini and features/support/screens/welcome.coffee.
 
-Alternatively, check out the [zucchini-demo](https://github.com/rajbeniwal/zucchini-demo) project featuring an easy to explore Zucchini setup around Apple's CoreDataBooks sample.
+Alternatively, check out the [zucchini-demo](https://github.com/zucchini-src/zucchini-demo) project featuring an easy to explore Zucchini setup around Apple's CoreDataBooks sample.
 
 Running on the device
 --------------------------------
@@ -77,8 +77,13 @@ devices:
     app: ./Build/Products/Debug-iphoneos/CoreDataBooks.app
 ```
 
+If you do not want to hard-code the app path in your config files, you can use the environment variable `ZUCCHINI_APP`:
 
-Run it as usual:
+```
+ZUCCHINI_APP="/path/to/app" zucchini...
+```
+
+Run Zucchini and watch the simulator go!
 
 ```
 ZUCCHINI_DEVICE="iOS Simulator" zucchini run /path/to/my_feature
